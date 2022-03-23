@@ -12,12 +12,12 @@ prog_text = f.readlines()
 
 checks.compCode(prog_text)
 
-#error = checks.getErrors()
+error = checks.getErrors()
 
 out_text = checks.getOutput()
 
-#if not error:
-print(out_text)
-#else:
-#    print("ERROR: Unkown")
-#    quit()
+if not error:
+    print(out_text)
+else:
+    print("ERROR: Unkown")
+    quit()
