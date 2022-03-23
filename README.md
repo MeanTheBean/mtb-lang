@@ -1,1 +1,1 @@
-mtb-lang is cool
+Run main.py for this to work!
