@@ -9,11 +9,11 @@ def compCode(code):
     line = 0
     fails = 0
     for i in code:
-        token = 0
+        token = -1
         currentLine = code[line]
         for i in tokenList.tokens:
-            if currentLine.split(" ",1)[0] == tokenList.tokens[token]:
-                out = out + "\n" + currentLine.split(" ",1)[1]
+            if currentLine.split(" ",1)[0] == tokenList.tokens[token+1]:
+                out = out + "\n" + tokenList.tokens[token+2](currentLine.split(" ",1)[1])
                 succses = True
             elif currentLine.split(" ",1)[0] == "//":
                 succses = True
