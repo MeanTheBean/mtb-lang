@@ -1,4 +1,2 @@
 // Prints hello world
 _sysput Hello, World
-_sysput No
-abcd cool
