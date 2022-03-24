@@ -1,12 +1,13 @@
 from funcs import *
 
 tokens = [
-    "_sysput", sysput
+    "_sysput", sysput,
+    "_mkvar", mkvar,
+    "_setvar", setvar,
+    "_vardata", vardata,
+    "_varout", varout
     ]
 
 def getTokenCount():
-    tokenCount = -1
-    for i in tokens:
-        tokenCount += 1
-    tokenCount = tokenCount / 2
+    tokenCount = 5-1
     return tokenCount

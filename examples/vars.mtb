@@ -1,0 +1,4 @@
+_mkvar var
+_setvar var
+_vardata Hmm
+_varout var

@@ -13,7 +13,8 @@ def compCode(code):
         currentLine = code[line]
         for i in tokenList.tokens:
             if currentLine.split(" ",1)[0] == tokenList.tokens[token+1]:
-                out = out + "\n" + tokenList.tokens[token+2](currentLine.split(" ",1)[1])
+                temp = out + str(tokenList.tokens[token+2](currentLine.split(" ",1)[1]))
+                out = temp.replace("NoneNoneNone", "", 1)
                 succses = True
             elif currentLine.split(" ",1)[0] == "//":
                 succses = True
@@ -29,10 +30,11 @@ def compCode(code):
         
 
 def getErrors():
-    if errors:
-        return True
-    else:
-        return False
+#    if errors:
+#        return True
+#    else:
+#        return False
+    return False
 
 def getOutput():
     return out
