@@ -1,5 +1,9 @@
 import stack as st
 
+def CodeSetup():
+    global runcode
+    runcode = True
+
 def sysput(args):
     return args
 
@@ -33,3 +37,21 @@ def mulvar(othervar):
 def divvar(othervar):
     data = int(st.getData(currentVar)) / int(st.getData(othervar))
     st.setData(currentVar, data)
+
+def startif(othervar):
+    global runcode
+    if st.getData(currentVar) == st.getData(othervar):
+        runcode = True
+    else:
+        runcode = False
+
+def endif(e):
+    global runcode
+    runcode = True
+    
+def startnif(othervar):
+    global runcode
+    if st.getData(currentVar) != st.getData(othervar):
+        runcode = True
+    else:
+        runcode = False

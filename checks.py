@@ -1,8 +1,10 @@
 import tokenList
+import funcs
 
 def compCode(code):
     global out
     global errors
+    tokenList.setup()
     out = ""
     failed = 0
     errors = False
@@ -13,9 +15,17 @@ def compCode(code):
         currentLine = code[line]
         for i in tokenList.tokens:
             if currentLine.split(" ",1)[0] == tokenList.tokens[token+1]:
-                temp = out + str(tokenList.tokens[token+2](currentLine.split(" ",1)[1]))
-                out = temp.replace("NoneNoneNone", "", 1)
-                succses = True
+                if currentLine.split(" ",1)[0] == "_endif":
+                    temp = out + str(tokenList.tokens[token+2](currentLine.split(" ",1)[1]))
+                    out = temp.replace("None", "", 50)
+                    succses = True
+                elif funcs.runcode == True:
+                 temp = out + str(tokenList.tokens[token+2](currentLine.split(" ",1)[1]))
+                 out = temp.replace("None", "", 50)
+                 succses = True
+                else:
+                    succses = True
+                    out = out
             elif currentLine.split(" ",1)[0] == "//":
                 succses = True
             else:

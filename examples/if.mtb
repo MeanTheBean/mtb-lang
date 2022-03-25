@@ -1,0 +1,15 @@
+_mkvar main
+_mkvar tester
+
+_setvar main
+_vardata true
+_setvar tester
+// change below value to see the difrence
+_vardata true
+
+_setvar main
+_startif tester
+_sysput inside if
+_endif 1
+
+_sysput outside if
