@@ -1,0 +1,7 @@
+_mklist var
+_setvar var
+_ladddata 1
+_ladddata 2
+
+_varout var
+

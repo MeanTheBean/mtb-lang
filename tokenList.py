@@ -12,7 +12,9 @@ tokens = [
     "_divvar", divvar,
     "_startif", startif,
     "_endif", endif,
-    "_startnif", startnif
+    "_startnif", startnif,
+    "_mklist", mklist,
+    "_ladddata", ladddata
     ]
 
 def getTokenCount():

@@ -7,5 +7,8 @@ def setData(name, data):
 def getData(name):
     return globals()[name]
 
-def makeList(name):
-    return
+def newList(name):
+    globals()[name] = []
+
+def listAddData(name,data):
+    globals()[name].append(data)

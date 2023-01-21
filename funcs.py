@@ -55,3 +55,12 @@ def startnif(othervar):
         runcode = True
     else:
         runcode = False
+
+def mklist(num):
+    global currentVar
+    st.newList(num)
+    currentVar = num
+
+def ladddata(num):
+    global currentVar
+    st.listAddData(currentVar, num)
