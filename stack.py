@@ -6,3 +6,6 @@ def setData(name, data):
 
 def getData(name):
     return globals()[name]
+
+def makeList(name):
+    return
