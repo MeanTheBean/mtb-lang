@@ -1,1 +1,1 @@
-Run main.py for this to work! Read the examples to make your own stuff, no docs currently!
+Please look at the wiki page to learn how to use! (May be incomplete so look at the code too!)
