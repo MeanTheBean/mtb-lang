@@ -14,7 +14,8 @@ tokens = [
     "_endif", endif,
     "_startnif", startnif,
     "_mklist", mklist,
-    "_ladddata", ladddata
+    "_ladddata", ladddata,
+    "_pyexec", pyexec
     ]
 
 def getTokenCount():

@@ -64,3 +64,7 @@ def mklist(num):
 def ladddata(num):
     global currentVar
     st.listAddData(currentVar, num)
+
+def pyexec(code):
+    exec(code)
+    return ""
