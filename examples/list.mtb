@@ -1,7 +1,9 @@
+//setup
 _mklist var
 _setvar var
+//add data
 _ladddata 1
 _ladddata 2
-
+//print list
 _varout var
 
