@@ -12,3 +12,6 @@ def newList(name):
 
 def listAddData(name,data):
     globals()[name].append(data)
+
+def listGetData(name,indexid):
+    globals()[name][indexid]
