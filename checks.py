@@ -16,12 +16,16 @@ def compCode(code):
         for i in tokenList.tokens:
             if currentLine.split(" ",1)[0] == tokenList.tokens[token+1]:
                 if currentLine.split(" ",1)[0] == "_endif":
-                    temp = out + str(tokenList.tokens[token+2](currentLine.split(" ",1)[1]))
-                    out = temp.replace("None", "", 50)
-                    succses = True
+                 temp=tokenList.tokens[token+2](currentLine.split(" ",1)[1])
+                 if temp == None:
+                    temp=""
+                 out = out + str(temp)
+                 succses = True
                 elif funcs.runcode == True:
-                 temp = out + str(tokenList.tokens[token+2](currentLine.split(" ",1)[1]))
-                 out = temp.replace("None", "", 50)
+                 temp=tokenList.tokens[token+2](currentLine.split(" ",1)[1])
+                 if temp == None:
+                    temp=""
+                 out = out + str(temp)
                  succses = True
                 else:
                     succses = True
