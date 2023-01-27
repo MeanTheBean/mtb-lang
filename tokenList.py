@@ -19,7 +19,7 @@ tokens = [
     ]
 
 def getTokenCount():
-    tokenCount = 6-1
+    tokenCount = len(tokens)
     return tokenCount
 
 def setup():
