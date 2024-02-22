@@ -4,4 +4,4 @@ _mkvar num2
 _vardata 4
 _setvar num1
 _subvar num2
-_varout num1
+_sysput num1

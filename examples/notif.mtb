@@ -9,7 +9,7 @@ _vardata false
 
 _setvar main
 _startnif tester
-_sysput inside notif
+_sysput v.inside notif
 _endif 1
 
-_sysput outside notif
+_sysput v.outside notif

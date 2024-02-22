@@ -1,26 +1,27 @@
 import stack as st
+import code
 
 def CodeSetup():
     global runcode
     runcode = True
 
 def sysput(args):
-    return args
+    return parse_var(args)
 
 def mkvar(num):
     global currentVar
     st.newLayer(num)
     currentVar = num
+    #print(num)
 
 def setvar(num):
     global currentVar
     currentVar = num
 
 def vardata(data):
-    st.setData(currentVar, data)
+    st.setData(currentVar, parse_var(data))
 
-def varout(num):
-    return st.getData(num)
+
 
 def addvar(othervar):
     data = int(st.getData(currentVar)) + int(st.getData(othervar))
@@ -45,7 +46,7 @@ def startif(othervar):
     else:
         runcode = False
 
-def endif(e):
+def endif(e=None):
     global runcode
     runcode = True
     
@@ -68,3 +69,16 @@ def ladddata(num):
 def pyexec(code):
     exec(code)
     return ""
+
+def parse_var(var):
+  if var[0:2] == "v.":
+    return var[2:]
+  elif var[0:2] == "l.":
+    return len(st.getData(var[2:]))
+  elif var == "true\n":
+    return 1
+  elif var == "false\n":
+    return 0
+  else:
+    #print(var + "\n")
+    return st.getData(var)

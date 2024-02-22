@@ -9,7 +9,7 @@ _vardata true
 
 _setvar main
 _startif tester
-_sysput inside if
+_sysput v.inside if
 _endif 1
 
-_sysput outside if
+_sysput v.outside if

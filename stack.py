@@ -5,7 +5,11 @@ def setData(name, data):
     globals()[name] = data
 
 def getData(name):
+  #try:  
     return globals()[name]
+  #except:
+  #  print("ERROR: Variable not found")
+  #  quit()
 
 def newList(name):
     globals()[name] = []
