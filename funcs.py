@@ -24,20 +24,28 @@ def vardata(data):
 
 
 def addvar(othervar):
-    data = int(st.getData(currentVar)) + int(st.getData(othervar))
+    data = parse_var(currentVar, True) + parse_var(othervar, True)
+    if int(data) == data:
+        data = int(data)
     st.setData(currentVar, data)
     
 def subvar(othervar):
-    data = int(st.getData(currentVar)) - int(st.getData(othervar))
-    st.setData(currentVar, data)
+  data = parse_var(currentVar, True) - parse_var(othervar, True)
+  if int(data) == data:
+      data = int(data)
+  st.setData(currentVar, data)
 
 def mulvar(othervar):
-    data = int(st.getData(currentVar)) * int(st.getData(othervar))
-    st.setData(currentVar, data)
+  data = parse_var(currentVar, True) * parse_var(othervar, True)
+  if int(data) == data:
+      data = int(data)
+  st.setData(currentVar, data)
 
 def divvar(othervar):
-    data = int(st.getData(currentVar)) / int(st.getData(othervar))
-    st.setData(currentVar, data)
+  data = parse_var(currentVar, True) / parse_var(othervar, True)
+  if int(data) == data:
+      data = int(data)
+  st.setData(currentVar, data)
 
 def startif(othervar):
     global runcode
@@ -70,9 +78,16 @@ def pyexec(code):
     exec(code)
     return ""
 
-def parse_var(var):
+def parse_var(var, convert_to_num=False):
   if var[0:2] == "v.":
-    return var[2:]
+    if convert_to_num:
+      try:
+        return float(var[2:].strip("\n"))
+      except:
+        print("ERROR: Cannot convert char to num!")
+        quit()
+    else:
+      return var[2:]
   elif var[0:2] == "l.":
     return len(st.getData(var[2:]))
   elif var == "true\n":
@@ -81,4 +96,11 @@ def parse_var(var):
     return 0
   else:
     #print(var + "\n")
-    return st.getData(var)
+    if convert_to_num:
+      try:
+        return float(st.getData(var))
+      except:
+        print("ERROR: Cannot convert char to num!")
+        quit()
+    else:
+      return st.getData(var)

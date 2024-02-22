@@ -1,7 +1,7 @@
 _mkvar num1
-_vardata 1
+_vardata v.1
 _mkvar num2
-_vardata 4
+_vardata v.4
 _setvar num1
 _addvar num2
 _sysput num1
