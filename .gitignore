@@ -2,3 +2,6 @@ __pycache__
 .replit
 replit.nix
 test.mtb
+poetry.lock
+pyproject.toml
+.upm
