@@ -21,7 +21,27 @@ def setvar(num):
 def vardata(data):
     st.setData(currentVar, parse_var(data))
 
-
+def math_func(input):
+  input = input.strip(" ")
+  if "+" in input:
+    input = input.split("+")
+    data = parse_var(input[0]+'\n'.strip(""), True) + parse_var(input[1], True)
+  if "-" in input:
+    input = input.split("-")
+    data = parse_var(input[0]+'\n'.strip(""), True) - parse_var(input[1], True)
+  if "*" in input:
+    input = input.split("*")
+    data = parse_var(input[0]+'\n'.strip(""), True) * parse_var(input[1], True)
+  if "/" in input:
+    input = input.split("/")
+    data = parse_var(input[0]+'\n'.strip(""), True) / parse_var(input[1], True)
+  if "^" in input:
+    input = input.split("^")
+    data = parse_var(input[0]+'\n'.strip(""), True) ** parse_var(input[1], True)
+  
+  if int(data) == data:
+    data = int(data)
+  return data
 
 def addvar(othervar):
     data = parse_var(currentVar, True) + parse_var(othervar, True)
@@ -79,10 +99,12 @@ def pyexec(code):
     return ""
 
 def parse_var(var, convert_to_num=False):
+  var = var.replace(" ", "")
   if var[0:2] == "v.":
     if convert_to_num:
       try:
-        return float(var[2:].strip("\n"))
+        #print(var)
+        return float(var[2:].strip("\n").strip())
       except:
         print("ERROR: Cannot convert char to num!")
         quit()
@@ -90,6 +112,9 @@ def parse_var(var, convert_to_num=False):
       return var[2:]
   elif var[0:2] == "l.":
     return len(st.getData(var[2:]))
+  elif var[0:2] == "m.":
+    #print("math")
+    return math_func(var[2:])
   elif var == "true\n":
     return 1
   elif var == "false\n":
@@ -98,7 +123,8 @@ def parse_var(var, convert_to_num=False):
     #print(var + "\n")
     if convert_to_num:
       try:
-        return float(st.getData(var))
+        #print(var)
+        return float(st.getData(var.replace(" ","")))
       except:
         print("ERROR: Cannot convert char to num!")
         quit()

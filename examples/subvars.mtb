@@ -3,5 +3,5 @@ _vardata v.1
 _mkvar num2
 _vardata v.4
 _setvar num1
-_subvar num2
+_vardata m.num2 - num1
 _sysput num1
