@@ -43,6 +43,7 @@ def math_func(input):
     data = int(data)
   return data
 
+# depricated math functions, only here for backwards compatibility, use "m." instead
 def addvar(othervar):
     data = parse_var(currentVar, True) + parse_var(othervar, True)
     if int(data) == data:

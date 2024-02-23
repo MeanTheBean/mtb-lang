@@ -5,10 +5,10 @@ tokens = [
     "_mkvar", mkvar,
     "_setvar", setvar,
     "_vardata", vardata,
-    "_addvar", addvar,
-    "_subvar", subvar,
-    "_mulvar", mulvar,
-    "_divvar", divvar,
+    "_addvar", addvar, # depricated, use "m." instead"
+    "_subvar", subvar, #depricated, use "m." instead"
+    "_mulvar", mulvar, #depricated, use "m." instead"
+    "_divvar", divvar, #depricated, use "m." instead"
     "_startif", startif,
     "_endif", endif,
     "_startnif", startnif,
