@@ -88,16 +88,31 @@ def startnif(othervar):
 
 def mklist(num):
     global currentVar
-    st.newList(num)
+    st.newLayer(num)
+    st.setData(num, "[l]")
+    #print(st.getData(num))
     currentVar = num
 
-def ladddata(num):
-    global currentVar
-    st.listAddData(currentVar, num)
+def appendvar(data):
+  st.setData(currentVar, st.getData(currentVar) + "|" + parse_var(data))
+  #print(st.getData(currentVar))
 
 def pyexec(code):
     exec(code)
     return ""
+
+def parse_list(listName, indexNum):
+  wholeVar = st.getData(listName)
+  if wholeVar[0:3] == "[l]":
+    splitList = wholeVar[3:].split("|")
+    try:
+      return splitList[indexNum+1]
+    except:
+      print("ERROR: Index out of range!")
+      quit()
+  else:
+    print("ERROR: Variable is not a valid list!")
+    quit()
 
 def parse_var(var, convert_to_num=False):
   var = var.replace(" ", "")
@@ -116,6 +131,10 @@ def parse_var(var, convert_to_num=False):
   elif var[0:2] == "m.":
     #print("math")
     return math_func(var[2:])
+  elif var[0:2] == "i.":
+    dot_index = var[2:].find(".")+2
+    num_index = int(var[2:dot_index])
+    return parse_list(var[dot_index+1:], num_index)
   elif var == "true\n":
     return 1
   elif var == "false\n":
