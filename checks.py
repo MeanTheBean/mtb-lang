@@ -25,7 +25,9 @@ def compCode(code):
                  temp=tokenList.tokens[token+2](currentLine.split(" ",1)[1])
                  if temp == None:
                     temp=""
-                 out = out + str(temp)
+                 if temp != "":
+                  print(str(temp)[:-1])
+                 #out = out + str(temp)
                  succses = True
                 else:
                     succses = True

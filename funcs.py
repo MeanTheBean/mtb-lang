@@ -3,6 +3,8 @@ import code
 
 def CodeSetup():
     global runcode
+    global recordfunc
+    recordfunc = False
     runcode = True
 
 def sysput(args):

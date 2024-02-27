@@ -14,8 +14,8 @@ checks.compCode(prog_text)
 
 error = checks.getErrors()
 
-if not error:
-    print(checks.getOutput())
-else:
-    print("ERROR: Unkown")
-    quit()
+#if not error:
+#    print(checks.getOutput())
+#else:
+#    print("ERROR: Unkown")
+#    quit()
