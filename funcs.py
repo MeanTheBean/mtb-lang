@@ -8,7 +8,15 @@ def CodeSetup():
     runcode = True
 
 def sysput(args):
-    return parse_var(args)
+  #print("hi")
+  return parse_var(args)
+
+def sysgrab(args):
+  args = args.split(" ",1)
+  args[0]+="\n"
+  #print(args)
+
+  st.setData(args[0], input(parse_var(args[1]))+"\n")
 
 def mkvar(num):
     global currentVar

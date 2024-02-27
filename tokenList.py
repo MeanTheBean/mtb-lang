@@ -2,6 +2,7 @@ from funcs import *
 
 tokens = [
     "_sysput", sysput,
+    "_sysgrab", sysgrab,
     "_mkvar", mkvar,
     "_setvar", setvar, # activevar system is deprecated, no need for "_setvar"
     "_vardata", vardata,
