@@ -1,4 +1,5 @@
 _mkvar var
-_setvar var
-_vardata Hmm
+// _setvar is not needed, and is broken
+// vardata format: _vardata <variable> <data>
+_vardata var v.Hmm hello
 _sysput var

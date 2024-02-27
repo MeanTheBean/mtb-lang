@@ -1,7 +1,12 @@
+// create the variables
 _mkvar num1
-_vardata v.1
 _mkvar num2
-_vardata v.4
-_setvar num1
-_vardata m.num2 + num1
-_sysput num1
+_mkvar output
+
+// give the variables values
+_vardata num1 v.1
+_vardata num2 v.4
+
+// "m." starts a math formula
+_vardata output m.num2 + num1
+_sysput output

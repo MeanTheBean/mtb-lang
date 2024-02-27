@@ -3,7 +3,7 @@ from funcs import *
 tokens = [
     "_sysput", sysput,
     "_mkvar", mkvar,
-    "_setvar", setvar,
+    "_setvar", setvar, # activevar system is deprecated, no need for "_setvar"
     "_vardata", vardata,
     "_addvar", addvar, # depricated, use "m." instead"
     "_subvar", subvar, # depricated, use "m." instead"
@@ -11,7 +11,7 @@ tokens = [
     "_divvar", divvar, # depricated, use "m." instead"
     "_startif", startif,
     "_endif", endif,
-    "_startnif", startnif,
+    "_startnif", startnif, # depricated, use "!=" instead
     "_mklist", mklist,
     "_appendvar", appendvar,
     "_pyexec", pyexec,

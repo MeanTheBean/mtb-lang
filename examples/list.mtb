@@ -1,12 +1,11 @@
 // create the list
 _mklist list_var
-_setvar list_var
 
 // add data
-_appendvar v.hello
-_appendvar v.im
-_appendvar v.a
-_appendvar v.list
+_appendvar list_var v.hello
+_appendvar list_var v.im
+_appendvar list_var v.a
+_appendvar list_var v.list
 
 // print data (index starts at 0)
 _sysput i.0.list_var

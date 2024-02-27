@@ -19,7 +19,13 @@ def setvar(num):
     currentVar = num
 
 def vardata(data):
-    st.setData(currentVar, parse_var(data))
+    data = data.split(" ",1)
+    try:
+      data[0]+="\n"
+      #print(data)
+      st.setData(data[0].strip(" "), parse_var(data[1]))
+    except:
+      st.setData(currentVar, parse_var(data[0]))
 
 def math_func(input):
   input = input.strip(" ")
@@ -68,9 +74,10 @@ def divvar(othervar):
       data = int(data)
   st.setData(currentVar, data)
 
-def startif(othervar):
+def startif(data):
     global runcode
-    if st.getData(currentVar) == st.getData(othervar):
+    
+    if parse_var(data) == True:
         runcode = True
     else:
         runcode = False
@@ -79,6 +86,7 @@ def endif(e=None):
     global runcode
     runcode = True
     
+# depricated, use "!=" instead
 def startnif(othervar):
     global runcode
     if st.getData(currentVar) != st.getData(othervar):
@@ -94,7 +102,9 @@ def mklist(num):
     currentVar = num
 
 def appendvar(data):
-  st.setData(currentVar, st.getData(currentVar) + "|" + parse_var(data))
+  data = data.split(" ",1)
+  data[0]+="\n"
+  st.setData(data[0], st.getData(data[0]) + "|" + parse_var(data[1]))
   #print(st.getData(currentVar))
 
 def pyexec(code):
@@ -115,12 +125,13 @@ def parse_list(listName, indexNum):
     quit()
 
 def parse_var(var, convert_to_num=False):
-  var = var.replace(" ", "")
+  #print(var)
+  #var = var.replace(" ", "")
   if var[0:2] == "v.":
     if convert_to_num:
       try:
         #print(var)
-        return float(var[2:].strip("\n").strip())
+        return float(var[2:].strip("\n"))
       except:
         print("ERROR: Cannot convert char to num!")
         quit()
@@ -135,6 +146,41 @@ def parse_var(var, convert_to_num=False):
     dot_index = var[2:].find(".")+2
     num_index = int(var[2:dot_index])
     return parse_list(var[dot_index+1:], num_index)
+  elif var[0:2] == "c.":
+    var = var[2:].split(" ",-1)
+    var[0] += "\n"
+    #print(var)
+    if var[1] == "==":
+      return st.getData(var[0]) == st.getData(var[2])
+    elif var[1] == "!=":
+      return st.getData(var[0]) != st.getData(var[2])
+    elif var[1] == ">":
+      try:
+        return float(st.getData(var[0])) > float(st.getData(var[2]))
+      except:
+        print("ERROR: Cannot compare char to num!")
+        quit()
+    elif var[1] == ">=":
+      try:
+        return float(st.getData(var[0])) >= float(st.getData(var[2]))
+      except:
+        print("ERROR: Cannot compare char to num!")
+        quit()
+    elif var[1] == "<":
+      try:
+        return float(st.getData(var[0])) < float(st.getData(var[2]))
+      except:
+        print("ERROR: Cannot compare char to num!")
+        quit()
+    elif var[1] == "<=":
+      try:
+        return float(st.getData(var[0])) <= float(st.getData(var[2]))
+      except:
+        print("ERROR: Cannot compare char to num!")
+        quit()
+    else:
+      print("ERROR: Invalid comparison operator!")
+      quit()
   elif var == "true\n":
     return 1
   elif var == "false\n":

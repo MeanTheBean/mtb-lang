@@ -1,14 +1,14 @@
+// create the variables
 _mkvar main
 _mkvar tester
 
-_setvar main
-_vardata true
-_setvar tester
-// change below value to see the difrence
-_vardata true
+_vardata main true
+// change below value to false to see the diference
+_vardata tester true
 
-_setvar main
-_startif tester
+// "c." opens a comparison, will return either True or False
+// "==" is one of the many comparison operators, refer to the wiki for all of them
+_startif c.main == tester
 _sysput v.inside if
 _endif 1
 
