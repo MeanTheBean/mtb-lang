@@ -1,0 +1,62 @@
+// print title
+_sysput v.Calculator
+
+// define basic variables
+_mkvar num1
+_mkvar num2
+_mkvar output
+_mkvar opp
+
+// get inputs
+_sysgrab num1 v.Please enter a number:
+_sysgrab num2 v.Please enter another number:
+_sysgrab opp v.Please enter the operator (+, -, *, or /):
+
+// define comparison variables
+_mkvar plus_opp
+_mkvar min_opp
+_mkvar mul_opp
+_mkvar div_opp
+_mkvar failed
+
+_vardata plus_opp v.+
+_vardata min_opp v.-
+_vardata mul_opp v.*
+_vardata div_opp v./
+
+_vardata passed v.1
+_vardata failed v.1
+
+
+// test if addition
+_startif c.opp == plus_opp
+_vardata failed v.0
+_vardata output m.num1 + num2
+_endif 1
+
+// test if subtraction
+_startif c.opp == min_opp
+_vardata failed v.0
+_vardata output m.num1 - num2
+_endif 1
+
+// test if multiplication
+_startif c.opp == mul_opp
+_vardata failed v.0
+_vardata output m.num1 * num2
+_endif 1
+
+// test if division
+_startif c.opp == div_opp
+_vardata failed v.0
+_vardata output m.num1 / num2
+_endif 1
+
+// equivilent to elif
+_startif c.passed == failed
+_raisee Invalid opperator!
+_endif 1
+
+// print output
+_sysput v.The output is:
+_sysput output
