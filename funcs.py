@@ -17,6 +17,7 @@ def sysgrab(args):
   #print(args)
 
   st.setData(args[0], input(parse_var(args[1]))+"\n")
+  #print(st.getData(args[0]))
 
 def mkvar(num):
     global currentVar
@@ -39,8 +40,10 @@ def vardata(data):
 
 def math_func(input):
   input = input.strip(" ")
+  input = input.replace(" ", "")
   if "+" in input:
     input = input.split("+")
+    #print(parse_var(input[0]+'\n'.strip("")))
     data = parse_var(input[0]+'\n'.strip(""), True) + parse_var(input[1], True)
   if "-" in input:
     input = input.split("-")
@@ -57,7 +60,7 @@ def math_func(input):
   
   if int(data) == data:
     data = int(data)
-  return data
+  return str(data) + " "
 
 # depricated math functions, only here for backwards compatibility, use "m." instead
 def addvar(othervar):
