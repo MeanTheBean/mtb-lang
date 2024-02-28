@@ -124,6 +124,10 @@ def pyexec(code):
     exec(code)
     return ""
 
+def raisee(e):
+  print(f"ERROR: {e}")
+  quit()
+
 def parse_list(listName, indexNum):
   wholeVar = st.getData(listName)
   if wholeVar[0:3] == "[l]":
