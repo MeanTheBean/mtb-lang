@@ -1,11 +1,21 @@
 import stack as st
-import code
+import checks as ch
 
 def CodeSetup():
     global runcode
     global recordfunc
-    recordfunc = False
+    global localvars
+    global activefunc
+    activefunc = False
+    localvars = {}
+    recordfunc = None
     runcode = True
+
+def make_local_var(name):
+  localvars[name] = None
+
+def set_local_var(name, value):
+  localvars[name] = value
 
 def sysput(args):
   #print("hi")
@@ -31,6 +41,7 @@ def setvar(num):
 
 def vardata(data):
     data = data.split(" ",1)
+    data[0] = data[0].strip(" ")
     try:
       data[0]+="\n"
       #print(data)
@@ -45,18 +56,21 @@ def math_func(input):
     input = input.split("+")
     #print(parse_var(input[0]+'\n'.strip("")))
     data = parse_var(input[0]+'\n'.strip(""), True) + parse_var(input[1], True)
-  if "-" in input:
+  elif "-" in input:
     input = input.split("-")
     data = parse_var(input[0]+'\n'.strip(""), True) - parse_var(input[1], True)
-  if "*" in input:
+  elif "*" in input:
     input = input.split("*")
     data = parse_var(input[0]+'\n'.strip(""), True) * parse_var(input[1], True)
-  if "/" in input:
+  elif "/" in input:
     input = input.split("/")
     data = parse_var(input[0]+'\n'.strip(""), True) / parse_var(input[1], True)
-  if "^" in input:
+  elif "^" in input:
     input = input.split("^")
     data = parse_var(input[0]+'\n'.strip(""), True) ** parse_var(input[1], True)
+  else:
+    print("ERROR: Invalid operation!")
+    quit(1)
   
   if int(data) == data:
     data = int(data)
@@ -128,6 +142,70 @@ def raisee(e):
   print(f"ERROR: {e}")
   quit()
 
+def mkfunc(data):
+  global recordfunc
+  global runcode
+  global currentfunc
+  
+  runcode = False
+
+  data = data.split(" ")
+  recordfunc = data[0]
+  currentfunc = {
+    "name": data[0],
+    "args": data[1],
+    "code": []
+  }
+  #currentfunc = "hi"
+  st.newLayer(data[0])
+  #print(currentfunc)
+  
+
+def endfunc(e=None):
+  global recordfunc
+  global runcode
+  global currentfunc
+  
+
+  tempfunc = {
+    "args": currentfunc["args"],
+    "code": currentfunc["code"]
+  }
+
+  st.setData(recordfunc, tempfunc)
+  #print(st.getData(recordfunc))
+
+  recordfunc = None
+  runcode = True
+  currentfunc = None
+
+def record_line(data):
+  #global currentfunc
+
+  #print(data)
+
+  currentfunc["code"].append(data)
+  #print(currentfunc)
+  return ""
+
+def run_func(data, is_loop=False):
+  global localvars
+  global activefunc
+  activefunc = True
+  currentcode = st.getData(data[0], True)
+  #print(currentcode["code"])
+
+  make_local_var(currentcode["args"])
+  set_local_var(currentcode["args"], parse_var(data[1]))
+
+  #print(localvars)
+  
+  ch.compCode(currentcode["code"], True)
+
+  if not is_loop:
+    localvars = {}
+    activefunc = False
+
 def parse_list(listName, indexNum):
   wholeVar = st.getData(listName)
   if wholeVar[0:3] == "[l]":
@@ -163,6 +241,13 @@ def parse_var(var, convert_to_num=False):
     dot_index = var[2:].find(".")+2
     num_index = int(var[2:dot_index])
     return parse_list(var[dot_index+1:], num_index)
+  elif var[0:2] == "f.":
+    try:
+      #print(localvars[var[2:]])
+      return localvars[var[2:]]
+    except:
+      print("ERROR: Local variable not found!")
+      quit()
   elif var[0:2] == "c.":
     var = var[2:].split(" ",-1)
     var[0] += "\n"

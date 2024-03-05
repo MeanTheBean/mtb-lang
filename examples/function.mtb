@@ -1,0 +1,8 @@
+// Create the function
+_mkfunc print_ln line
+// "f." pulls from local variables
+_sysput f.line
+_endfunc 1
+
+// Run the function
+$print_ln v.This is a function!

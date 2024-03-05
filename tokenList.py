@@ -17,6 +17,8 @@ tokens = [
     "_appendvar", appendvar,
     "_pyexec", pyexec,
     "_raisee", raisee,
+    "_mkfunc", mkfunc,
+    "_endfunc", endfunc,
     ]
 
 def getTokenCount():
