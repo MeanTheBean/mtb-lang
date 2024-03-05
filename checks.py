@@ -18,6 +18,8 @@ def compCode(code, is_func=False):
         #print("exec")
         token = -1
         currentLine = code[line]
+        if "\n" not in currentLine:
+          currentLine += "\n"
         #print(currentLine[0])
         if currentLine[0] == "$" and funcs.runcode == True:
           #print(currentLine)
