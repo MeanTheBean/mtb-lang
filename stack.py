@@ -1,3 +1,5 @@
+import os
+
 def newLayer(name):
     globals()[name] = None
 
@@ -10,8 +12,8 @@ def getData(name, is_func=False):
   except:
     if not is_func:
       print("ERROR: Variable not found")
-      quit()
+      os._exit(1)
     else:
       print("ERROR: Function not found")
-      quit()
+      os._exit(1)
 
