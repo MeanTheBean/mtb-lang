@@ -6,10 +6,14 @@ def CodeSetup():
     global recordfunc
     global localvars
     global activefunc
+    global whilecond
+    global iswhile
     activefunc = False
     localvars = {}
     recordfunc = None
     runcode = True
+    whilecond = False
+    iswhile = False
 
 def make_local_var(name):
   localvars[name] = None
@@ -175,9 +179,14 @@ def endfunc(e=None):
   st.setData(recordfunc, tempfunc)
   #print(st.getData(recordfunc))
 
+  
+  
   recordfunc = None
   runcode = True
   currentfunc = None
+
+  if iswhile == True:
+    run_while()
 
 def record_line(data):
   #global currentfunc
@@ -205,6 +214,22 @@ def run_func(data, is_loop=False):
   if not is_loop:
     localvars = {}
     activefunc = False
+
+def start_while(data):
+  global iswhile
+  global whilecond
+  whilecond = data
+  iswhile = True
+  mkfunc("loop_temp void")
+
+def run_while():
+  global iswhile
+  global whilecond
+  while parse_var(whilecond) == (True or 1):
+    run_func(["loop_temp", "v.NULL"])
+  iswhile = False
+  whilecond = None
+    
 
 def parse_list(listName, indexNum):
   wholeVar = st.getData(listName)

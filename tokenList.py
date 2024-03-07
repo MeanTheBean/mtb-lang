@@ -19,6 +19,7 @@ tokens = [
     "_raisee", raisee,
     "_mkfunc", mkfunc,
     "_endfunc", endfunc,
+    "_while", start_while
     ]
 
 def getTokenCount():
