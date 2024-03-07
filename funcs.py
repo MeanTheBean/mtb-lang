@@ -8,12 +8,14 @@ def CodeSetup():
     global activefunc
     global whilecond
     global iswhile
+    global currentfunc
     activefunc = False
     localvars = {}
     recordfunc = None
     runcode = True
     whilecond = False
     iswhile = False
+    currentfunc = None
 
 def make_local_var(name):
   localvars[name] = None
@@ -115,7 +117,8 @@ def startif(data):
 
 def endif(e=None):
     global runcode
-    runcode = True
+    if currentfunc != None:
+      runcode = True
     
 # depricated, use "!=" instead
 def startnif(othervar):
