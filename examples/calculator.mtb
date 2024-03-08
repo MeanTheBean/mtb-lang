@@ -4,11 +4,23 @@ _sysput v.Calculator
 // define basic variables
 _mkvar num1
 _mkvar num2
+_mkvar run
+_mkvar exit
 _mkvar output
 _mkvar opp
 
+_vardata run true
+_vardata exit v.exit
+
+_while run
 // get inputs
-_sysgrab num1 v.Please enter a number:
+_sysgrab num1 v.Please enter a number (or exit):
+
+_startif c.num1 == exit
+_vardata run false
+_endprog 0
+_endif 1
+
 _sysgrab num2 v.Please enter another number:
 _sysgrab opp v.Please enter the operator (+, -, *, or /):
 
@@ -26,7 +38,6 @@ _vardata div_opp v./
 
 _vardata passed v.1
 _vardata failed v.1
-
 
 // test if addition
 _startif c.opp == plus_opp
@@ -60,3 +71,6 @@ _endif 1
 // print output
 _sysput v.The output is:
 _sysput output
+_sysput v. 
+_sysput v. 
+_endfunc 1
