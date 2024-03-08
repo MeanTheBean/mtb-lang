@@ -1,7 +1,11 @@
 import os
 
 def newLayer(name):
+  try:
     globals()[name] = None
+  except:
+    print("ERROR: Invalid variable name!")
+    os._exit(1)
 
 def setData(name, data):
     globals()[name] = data
