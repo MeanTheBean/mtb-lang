@@ -1,5 +1,6 @@
 import stack as st
 import checks as ch
+import os
 
 def CodeSetup():
     global runcode
@@ -199,6 +200,17 @@ def record_line(data):
   currentfunc["code"].append(data)
   #print(currentfunc)
   return ""
+
+def endprog(code):
+  code = int(code)
+  if code == 1:
+    print("ERROR: Program ended with exit code 1!")
+    os._exit(1)
+  elif code == 0:
+    os._exit(0)
+  else:
+    print("ERROR: Invalid exit code!")
+    os._exit(1)
 
 def run_func(data, is_loop=False):
   global localvars
