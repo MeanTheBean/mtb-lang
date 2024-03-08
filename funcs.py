@@ -110,15 +110,16 @@ def divvar(othervar):
 
 def startif(data):
     global runcode
-    
-    if parse_var(data) == True:
+    #print(parse_var(data))
+    if parse_var(data) == (True or 1):
+        #print("hey")
         runcode = True
     else:
         runcode = False
 
 def endif(e=None):
     global runcode
-    if currentfunc != None:
+    if currentfunc == None:
       runcode = True
     
 # depricated, use "!=" instead
