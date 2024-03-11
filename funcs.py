@@ -1,6 +1,7 @@
 import stack as st
 import checks as ch
 import os
+#import main
 
 def CodeSetup():
     global runcode
@@ -10,6 +11,8 @@ def CodeSetup():
     global whilecond
     global iswhile
     global currentfunc
+    global VERSION
+    VERSION = "0.1.3"
     activefunc = False
     localvars = {}
     recordfunc = None
@@ -212,6 +215,22 @@ def endprog(code):
   else:
     print("ERROR: Invalid exit code!")
     os._exit(1)
+
+def reqver(ver):
+  ver_split = ver.split(".")
+  progver = VERSION.split(".")
+  if int(ver_split[0]) > int(progver[0]):
+    print(f"ERROR: Program requires version {ver[:-1]} or higher! (Current: {VERSION})")
+    os._exit(1)
+  elif int(ver_split[1]) > int(progver[1]):
+    print(f"ERROR: Program requires version {ver[:-1]} or higher! (Current: {VERSION})")
+    os._exit(1)
+  elif int(ver_split[2]) > int(progver[2]):
+    print(f"ERROR: Program requires version {ver[:-1]} or higher! (Current: {VERSION})")
+    os._exit(1)
+
+def putver(e=None):
+  print(f"Version: {VERSION}")
 
 def run_func(data, is_loop=False):
   global localvars
