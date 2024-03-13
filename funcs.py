@@ -3,6 +3,8 @@ import checks as ch
 import os
 #import main
 
+VERSION = "0.1.3"
+
 def CodeSetup():
     global runcode
     global recordfunc
@@ -11,8 +13,6 @@ def CodeSetup():
     global whilecond
     global iswhile
     global currentfunc
-    global VERSION
-    VERSION = "0.1.3"
     activefunc = False
     localvars = {}
     recordfunc = None
