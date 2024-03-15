@@ -1,6 +1,7 @@
 import stack as st
 import checks as ch
 import os
+import time
 #import main
 
 VERSION = "0.1.3"
@@ -26,7 +27,9 @@ def clearcon(e=None):
     os.system('cls')
   else:
     os.system('clear')
-    
+
+def proghalt(halttime):
+  time.sleep(parse_var(halttime, True))
 
 def make_local_var(name):
   localvars[name] = None
