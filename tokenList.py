@@ -23,6 +23,7 @@ tokens = [
     "_endprog", endprog,
     "_reqver", reqver,
     "_putver", putver,
+    "_clearcon", clearcon
     ]
 
 def getTokenCount():

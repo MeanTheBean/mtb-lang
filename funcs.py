@@ -21,6 +21,13 @@ def CodeSetup():
     iswhile = False
     currentfunc = None
 
+def clearcon(e=None):
+  if os.name == 'nt':
+    os.system('cls')
+  else:
+    os.system('clear')
+    
+
 def make_local_var(name):
   localvars[name] = None
 
