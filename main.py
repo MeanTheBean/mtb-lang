@@ -1,6 +1,7 @@
 import argparse
 import checks
 import funcs
+import os
 
 parser = argparse.ArgumentParser(description='A program compiler')
 parser.add_argument("code_file", help="Prints the supplied argument.")
@@ -12,6 +13,7 @@ try:
 except:
   if args.code_file == "version":
     print(f"mtb-lang version {funcs.VERSION}; created by Mean The Bean 2024")
+    os._exit(0)
   else:  
     print(f"ERROR: No such file: {args.code_file}")
   quit()
