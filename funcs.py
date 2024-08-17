@@ -68,26 +68,15 @@ def sysgrab(args):
 
 
 def mkvar(num):
-  global currentVar
   st.newLayer(num)
-  currentVar = num
   #print(num)
-
-
-def setvar(num):
-  global currentVar
-  currentVar = num
-
 
 def vardata(data):
   data = data.split(" ", 1)
   data[0] = data[0].strip(" ")
-  try:
-    data[0] += "\n"
-    #print(data)
-    st.setData(data[0].strip(" "), parse_var(data[1]))
-  except:
-    st.setData(currentVar, parse_var(data[0]))
+  data[0] += "\n"
+  #print(data)
+  st.setData(data[0].strip(" "), parse_var(data[1]))
 
 
 def math_func(input):
@@ -122,36 +111,6 @@ def math_func(input):
     data = int(data)
   return str(data) + " "
 
-
-# depricated math functions, only here for backwards compatibility, use "m." instead
-def addvar(othervar):
-  data = parse_var(currentVar, True) + parse_var(othervar, True)
-  if int(data) == data:
-    data = int(data)
-  st.setData(currentVar, data)
-
-
-def subvar(othervar):
-  data = parse_var(currentVar, True) - parse_var(othervar, True)
-  if int(data) == data:
-    data = int(data)
-  st.setData(currentVar, data)
-
-
-def mulvar(othervar):
-  data = parse_var(currentVar, True) * parse_var(othervar, True)
-  if int(data) == data:
-    data = int(data)
-  st.setData(currentVar, data)
-
-
-def divvar(othervar):
-  data = parse_var(currentVar, True) / parse_var(othervar, True)
-  if int(data) == data:
-    data = int(data)
-  st.setData(currentVar, data)
-
-
 def startif(data):
   global runcode
   #print(parse_var(data))
@@ -167,29 +126,16 @@ def endif(e=None):
   if currentfunc == None:
     runcode = True
 
-
-# depricated, use "!=" instead
-def startnif(othervar):
-  global runcode
-  if st.getData(currentVar) != st.getData(othervar):
-    runcode = True
-  else:
-    runcode = False
-
-
 def mklist(num):
-  global currentVar
   st.newLayer(num)
   st.setData(num, "[l]")
   #print(st.getData(num))
-  currentVar = num
 
 
 def appendvar(data):
   data = data.split(" ", 1)
   data[0] += "\n"
   st.setData(data[0], st.getData(data[0]) + "|" + parse_var(data[1]))
-  #print(st.getData(currentVar))
 
 
 def pyexec(code):
