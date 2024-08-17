@@ -2,6 +2,7 @@ import argparse
 import checks
 import funcs
 import os
+import requests
 from pathlib import Path
 
 parser = argparse.ArgumentParser(description='A program compiler')
@@ -17,13 +18,17 @@ except:
   if args.code_file == "version":
     print(f"mtb-lang version {funcs.VERSION}; created by Mean The Bean 2024")
     os._exit(0)
+  elif args.code_file == "update":
+    #TODO: Update Packages
+    print("ERROR: Packages not yet implemented!")
+    os._exit(0)
   else:  
     print(f"ERROR: No such file: {args.code_file}")
   quit()
 prog_text = f.readlines()
 f.close()
 
-#try:
-checks.compCode(prog_text)
-#except:
-#  print("ERROR: Program stopped by user!")
+try:
+  checks.compCode(prog_text)
+except:
+  print("ERROR: Program stopped by user!")
