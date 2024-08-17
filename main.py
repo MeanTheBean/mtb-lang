@@ -5,7 +5,7 @@ import os
 import requests
 from pathlib import Path
 
-parser = argparse.ArgumentParser(description='A program interpreter for mtb-land')
+parser = argparse.ArgumentParser(description='A program interpreter for mtb-lang')
 parser.add_argument("code_file", help="The file to run")
 
 args = parser.parse_args()
