@@ -68,6 +68,13 @@ def sysgrab(args):
 
 
 def mkvar(num):
+  var_prefix = ""
+
+  if file_name == None:
+    var_prefix = ""
+  else:
+    var_prefix = file_name + "_"
+  num = var_prefix+num
   st.newLayer(num)
   #print(num)
 
@@ -75,6 +82,13 @@ def vardata(data):
   data = data.split(" ", 1)
   data[0] = data[0].strip(" ")
   data[0] += "\n"
+  
+  if file_name == None:
+    var_prefix = ""
+  else:
+    var_prefix = file_name + "_"
+  data[0] = var_prefix+data[0]
+  
   #print(data)
   st.setData(data[0].strip(" "), parse_var(data[1]))
 
@@ -299,6 +313,14 @@ def parse_list(listName, indexNum):
 def parse_var(var, convert_to_num=False):
   #print(var)
   #var = var.replace(" ", "")
+  
+
+  if file_name == None:
+    var_prefix = ""
+  else:
+    var_prefix = file_name + "_"
+  
+  
   if var[0:2] == "v.":
     if convert_to_num:
       try:
@@ -374,4 +396,6 @@ def parse_var(var, convert_to_num=False):
         print("ERROR: Cannot convert char to num!")
         quit()
     else:
+      var = var_prefix+var
+      var = var.replace(".","_")
       return st.getData(var)

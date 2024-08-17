@@ -4,8 +4,8 @@ _reqver 0.2.1
 // import the file with _importfile (don't include .mtb)
 _importfile importedfile
 
-_mkvar myvar
-_vardata myvar v.hi
-
 // instead of just doing $function_name, you will do $filename.function_name for imported functions
-$importedfile.printline myvar
+$importedfile.printline v.This is an imported function!
+
+// use filename.var_name to reference imported vars
+_sysput importedfile.imported_var

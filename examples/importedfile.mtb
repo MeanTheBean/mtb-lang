@@ -3,5 +3,9 @@
 
 // see function.mtb for how functions work
 _mkfunc printline line
-_sysput line
+_sysput f.line
 _endfunc 1
+
+// see vars.mtb for how variables work
+_mkvar imported_var
+_vardata imported_var v.This is an imported variable!
