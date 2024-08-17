@@ -4,6 +4,7 @@ tokens = [
     "_sysput", sysput,
     "_sysgrab", sysgrab,
     "_mkvar", mkvar,
+    "_vardata", vardata,
     "_startif", startif,
     "_endif", endif,
     "_mklist", mklist,
