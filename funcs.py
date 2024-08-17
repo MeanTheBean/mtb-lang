@@ -24,6 +24,16 @@ def CodeSetup():
   currentfunc = None
 
 
+def get_dir(file_path):
+  global file_dir
+  file_dir = file_path
+
+
+def set_file_name(name_file):
+  global file_name
+  file_name = name_file
+
+
 def clearcon(e=None):
   if os.name == 'nt':
     os.system('cls')
@@ -197,8 +207,15 @@ def mkfunc(data):
   global runcode
   global currentfunc
 
-  runcode = False
+  func_prefix = ""
 
+  if file_name == None:
+    func_prefix = ""
+  else:
+    func_prefix = file_name + "_"
+
+  runcode = False
+  data = func_prefix+data
   data = data.split(" ")
   recordfunc = data[0]
   currentfunc = {"name": data[0], "args": data[1], "code": []}
@@ -275,8 +292,11 @@ def run_func(data, is_loop=False):
   global localvars
   global activefunc
   activefunc = True
+  data[0] = data[0].replace(".", "_")
+  #print(data[0])
   currentcode = st.getData(data[0], True)
   #print(currentcode["code"])
+  
 
   make_local_var(currentcode["args"])
   set_local_var(currentcode["args"], parse_var(data[1]))
@@ -305,6 +325,15 @@ def run_while():
     run_func(["loop_temp", "v.NULL"])
   iswhile = False
   whilecond = None
+
+def importfile(file):
+  import_path = file_dir + "/" + file[:-1] + ".mtb"
+  #print(import_path)
+  f = open(import_path, "r")
+  import_text = f.readlines()
+  f.close()
+
+  ch.compCode(import_text, False, file[:-1])
 
 
 def parse_list(listName, indexNum):

@@ -1,0 +1,7 @@
+// don't run this file, run imports.mtb to see how imports run
+// don't use _reqver in an import, it's not needed
+
+// see function.mtb for how functions work
+_mkfunc printline line
+_sysput line
+_endfunc 1

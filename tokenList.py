@@ -24,7 +24,8 @@ tokens = [
     "_reqver", reqver,
     "_putver", putver,
     "_clearcon", clearcon,
-    "_proghalt", proghalt
+    "_proghalt", proghalt,
+    "_importfile", importfile
     ]
 
 def getTokenCount():

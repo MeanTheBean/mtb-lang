@@ -1,0 +1,11 @@
+// imports are only avalible in version 0.2.1 and above
+_reqver 0.2.1
+
+// import the file with _importfile (don't include .mtb)
+_importfile importedfile
+
+_mkvar myvar
+_vardata myvar v.hi
+
+// instead of just doing $function_name, you will do $filename.function_name for imported functions
+$importedfile.printline myvar
