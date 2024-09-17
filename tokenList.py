@@ -19,7 +19,8 @@ tokens = [
     "_putver", putver,
     "_clearcon", clearcon,
     "_proghalt", proghalt,
-    "_importfile", importfile
+    "_importfile", importfile,
+    "_pyvar", pyvar,
     ]
 
 def getTokenCount():

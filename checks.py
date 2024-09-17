@@ -14,7 +14,6 @@ def compCode(code, is_func=False, file_name=None):
     line = 0
     fails = 0
     prevLine = ""
-    #print(code)
     for i in code:
 
         #print("exec")
@@ -75,7 +74,7 @@ def compCode(code, is_func=False, file_name=None):
             if succses == True:
                 break
         line += 1
-
+    funcs.set_file_name(None)
 
 def getErrors():
     #    if errors:
@@ -83,7 +82,7 @@ def getErrors():
     #    else:
     #        return False
     return False
-
+    
 
 def getOutput():
     return out

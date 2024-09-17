@@ -6,6 +6,11 @@ import time
 
 VERSION = "0.2.1"
 
+#print(st.getData("os.name"))
+pyvar_list = {
+    "os.name": os.name,
+    "os.path": os.path,
+}
 
 def CodeSetup():
   global runcode
@@ -223,6 +228,12 @@ def endprog(code):
     print("ERROR: Invalid exit code!")
     os._exit(1)
 
+def pyvar(data):
+  data = data.split(" ", 1)
+  data[0] += "\n"
+  data[1] = data[1][:-1]
+  if data[1] in pyvar_list:
+    st.setData(data[0],pyvar_list[data[1]]+"\n")
 
 def reqver(ver):
   ver_split = ver.split(".")
