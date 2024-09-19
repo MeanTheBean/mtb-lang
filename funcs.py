@@ -2,6 +2,7 @@ import stack as st
 import checks as ch
 import os
 import time
+from pathlib import Path
 #import main
 
 VERSION = "0.2.1"
@@ -11,6 +12,12 @@ pyvar_list = {
     "os.name": os.name,
     "os.path": os.path,
 }
+
+if os.name == "nt":
+  lib_path = "%localappdata%/.mtb/libs/"
+elif os.name == "posix":
+  home = str(Path.home())
+  lib_path = home+"/.mtb/libs/"
 
 def CodeSetup():
   global runcode
@@ -306,6 +313,15 @@ def importfile(file):
 
   ch.compCode(import_text, False, file[:-1])
 
+def importlib(name):
+  import_path = lib_path+name[:-1]+".mtb"
+
+  f = open(import_path, "r")
+  import_text = f.readlines()
+  f.close()
+
+  ch.compCode(import_text, False, name[:-1])
+  
 
 def parse_list(listName, indexNum):
   wholeVar = st.getData(listName)
