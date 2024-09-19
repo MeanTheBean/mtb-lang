@@ -22,9 +22,12 @@ def compCode(code, is_func=False, file_name=None):
         if "\n" not in currentLine:
             currentLine += "\n"
         #print(currentLine[0])
-        if currentLine[0] == "$" and funcs.runcode == True:
+        if currentLine[0] != "_" and funcs.runcode == True:
             #print(currentLine)
-            funcs.run_func(currentLine[1:].split(" ", 1))
+            if currentLine[0] == "$":
+                funcs.run_func(currentLine[1:].split(" ", 1))
+            else:
+                funcs.var_set(currentLine)
         for i in tokenList.tokens:
             if currentLine.split(" ", 1)[0] == tokenList.tokens[token + 1]:
                 if currentLine.split(

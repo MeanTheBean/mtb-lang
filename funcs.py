@@ -78,6 +78,15 @@ def sysgrab(args):
   st.setData(args[0], input(parse_var(args[1])) + "\n")
   #print(st.getData(args[0]))
 
+def var_set(statement):
+  statement = statement.split(" ", 2)
+  if statement[1] == "<":
+    #print(statement)
+    try:
+      st.getData(statement[0]+"\n", no_error=True)
+    except:
+      st.newLayer(statement[0]+"\n")
+    st.setData(statement[0]+"\n", parse_var(statement[2]))
 
 def mkvar(num):
   var_prefix = ""
