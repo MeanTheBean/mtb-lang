@@ -3,8 +3,8 @@ from funcs import *
 tokens = [
     "_sysput", sysput,
     "_sysgrab", sysgrab,
-    "_mkvar", mkvar,
-    "_vardata", vardata,
+    "_mkvar", mkvar, # internal function, use < instead
+    "_vardata", vardata, # internal function, use < instead
     "_startif", startif,
     "_endif", endif,
     "_mklist", mklist,

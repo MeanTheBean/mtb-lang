@@ -88,6 +88,7 @@ def var_set(statement):
       st.newLayer(statement[0]+"\n")
     st.setData(statement[0]+"\n", parse_var(statement[2]))
 
+# internal function, use < instead
 def mkvar(num):
   var_prefix = ""
 
@@ -99,6 +100,7 @@ def mkvar(num):
   st.newLayer(num)
   #print(num)
 
+# internal function, use < instead
 def vardata(data):
   data = data.split(" ", 1)
   data[0] = data[0].strip(" ")
