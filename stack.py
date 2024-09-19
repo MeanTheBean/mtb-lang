@@ -10,7 +10,9 @@ def newLayer(name):
 def setData(name, data):
     globals()[name] = data
 
-def getData(name, is_func=False):
+def getData(name, is_func=False, no_error=False):
+  if no_error:
+    return globals()[name]
   try:  
     return globals()[name]
   except:
