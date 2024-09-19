@@ -6,4 +6,3 @@ poetry.lock
 pyproject.toml
 .upm
 importedfile.mtb
-sys.mtb
