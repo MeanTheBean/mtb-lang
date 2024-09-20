@@ -13,6 +13,7 @@ tokens = [
     "_raisee", raisee,
     "_mkfunc", mkfunc,
     "_endfunc", endfunc,
+    "_return", return_var,
     "_while", start_while,
     "_endprog", endprog,
     "_reqver", reqver,

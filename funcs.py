@@ -79,14 +79,27 @@ def sysgrab(args):
   #print(st.getData(args[0]))
 
 def var_set(statement):
+  global returnVar
+  returnVar=None
+  if statement == "" or statement == "\n":
+    return
   statement = statement.split(" ", 2)
+  #print(statement)
+  try:
+    st.getData(statement[0]+"\n", no_error=True)
+  except:
+    st.newLayer(statement[0]+"\n")
   if statement[1] == "<":
-    #print(statement)
-    try:
-      st.getData(statement[0]+"\n", no_error=True)
-    except:
-      st.newLayer(statement[0]+"\n")
-    st.setData(statement[0]+"\n", parse_var(statement[2]))
+    if statement[2][0] == "$":
+      run_func(statement[2][1:].split(" ", 1))
+      st.setData(statement[0]+"\n", returnVar)
+    else:
+      st.setData(statement[0]+"\n", parse_var(statement[2]))
+
+def return_var(name):
+  global returnVar
+  var_data = parse_var(name)
+  returnVar = var_data
 
 # internal function, use < instead
 def mkvar(num):
