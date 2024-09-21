@@ -28,6 +28,9 @@ def compCode(code, is_func=False, file_name=None):
                 funcs.run_func(currentLine[1:].split(" ", 1))
             else:
                 funcs.var_set(currentLine)
+        elif currentLine[0] != "_" and funcs.recordfunc:
+            prevLine = currentLine
+            funcs.record_line(currentLine)
         for i in tokenList.tokens:
             if currentLine.split(" ", 1)[0] == tokenList.tokens[token + 1]:
                 if currentLine.split(
