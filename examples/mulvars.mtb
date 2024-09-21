@@ -1,12 +1,7 @@
-// create the variables
-_mkvar num1
-_mkvar num2
-_mkvar output
-
 // give the variables values
-_vardata num1 v.1
-_vardata num2 v.4
+num1 < v.1
+num2 < v.4
 
 // "m." starts a math formula
-_vardata output m.num1 / num2
+output < m.num2 * num1
 _sysput output

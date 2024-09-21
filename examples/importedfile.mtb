@@ -1,5 +1,4 @@
 // don't run this file, run imports.mtb to see how imports run
-// don't use _reqver in an import, it's not needed
 
 // see function.mtb for how functions work
 _mkfunc printline line
@@ -7,5 +6,5 @@ _sysput f.line
 _endfunc 1
 
 // see vars.mtb for how variables work
-_mkvar imported_var
-_vardata imported_var v.This is an imported variable!
+//_mkvar imported_var
+importedfile_imported_var < v.This is an imported variable!

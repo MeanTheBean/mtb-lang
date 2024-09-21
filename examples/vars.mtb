@@ -1,5 +1,3 @@
-_mkvar var
-
-// vardata format: _vardata <variable> <data>
+// Format: <Variable Name> < <Data/Variable/Function>
 _vardata var v.Hmm hello
 _sysput var

@@ -1,9 +1,7 @@
-// make and set variables
-_mkvar count
-_vardata count v.0
+count < v.0
 
 // start while
 _while true
-_vardata count m.count + v.1
+count < m.count + v.1
 _sysput count
 _endfunc 1

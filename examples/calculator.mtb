@@ -1,66 +1,56 @@
+_reqver 0.2.1
+
+// This program requires the 'std' library to be installed
+_importlib std
+
 // print title
 _sysput v.Calculator
 
-// define basic variables
-_mkvar num1
-_mkvar num2
-_mkvar run
-_mkvar exit
-_mkvar output
-_mkvar opp
-
-_vardata run true
-_vardata exit v.exit
+run < true
+exit < v.exit
 
 _while run
 // get inputs
-_sysgrab num1 v.Please enter a number (or exit):
+num1 < $std.in v.Please enter a number (or exit):
 
 _startif c.num1 == exit
-_vardata run false
+run < false
 _endprog 0
 _endif 1
 
-_sysgrab num2 v.Please enter another number:
-_sysgrab opp v.Please enter the operator (+, -, *, or /):
+num2 < $std.in v.Please enter another number:
+opp < $std.in v.Please enter the operator (+, -, *, or /):
 
-// define comparison variables
-_mkvar plus_opp
-_mkvar min_opp
-_mkvar mul_opp
-_mkvar div_opp
-_mkvar failed
+plus_opp < v.+
+min_opp < v.-
+mul_opp < v.*
+div_opp < v./
 
-_vardata plus_opp v.+
-_vardata min_opp v.-
-_vardata mul_opp v.*
-_vardata div_opp v./
-
-_vardata passed v.1
-_vardata failed v.1
+passed < v.1
+failed < v.1
 
 // test if addition
 _startif c.opp == plus_opp
-_vardata failed v.0
-_vardata output m.num1 + num2
+failed < v.0
+output < m.num1 + num2
 _endif 1
 
 // test if subtraction
 _startif c.opp == min_opp
-_vardata failed v.0
-_vardata output m.num1 - num2
+failed < v.0
+output < m.num1 - num2
 _endif 1
 
 // test if multiplication
 _startif c.opp == mul_opp
-_vardata failed v.0
-_vardata output m.num1 * num2
+failed < v.0
+output < m.num1 * num2
 _endif 1
 
 // test if division
 _startif c.opp == div_opp
-_vardata failed v.0
-_vardata output m.num1 / num2
+failed < v.0
+output < m.num1 / num2
 _endif 1
 
 // equivilent to elif
