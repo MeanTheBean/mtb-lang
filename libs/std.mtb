@@ -1,0 +1,7 @@
+_reqver 0.2.1
+
+_mkfunc in qtext
+output_text < v.0
+_sysgrab output_text f.qtext
+_return output_text
+_endfunc 1
