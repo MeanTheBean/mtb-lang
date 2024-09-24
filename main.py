@@ -5,6 +5,8 @@ import os
 import requests
 from pathlib import Path
 
+allowError = True
+
 parser = argparse.ArgumentParser(description='A program interpreter for mtb-lang')
 parser.add_argument("code_file", help="The file to run")
 
@@ -44,7 +46,10 @@ except:
 prog_text = f.readlines()
 f.close()
 
-try:
+if allowError:
+  try:
+    checks.compCode(prog_text)
+  except:
+    print("ERROR: Program stopped by user!")
+else:
   checks.compCode(prog_text)
-except:
-  print("ERROR: Program stopped by user!")
