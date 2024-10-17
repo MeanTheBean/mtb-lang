@@ -5,3 +5,13 @@ output_text < v.0
 _sysgrab output_text f.qtext
 _return output_text
 _endfunc 1
+
+_mkfunc for $forFunc e
+_sysout v.pass
+_endfunc 1
+
+_mkfunc list data
+_mklist temp_list
+_appendvar temp_list f.data
+_return temp_list
+_endfunc 1

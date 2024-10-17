@@ -1,11 +1,9 @@
-// create the list
-_mklist list_var
+_importlib std
 
-// add data
-_appendvar list_var v.hello
-_appendvar list_var v.im
-_appendvar list_var v.a
-_appendvar list_var v.list
+// create the list
+// you can use pipes to seperate items
+list_var < $std.list v.hello|im|a|list
 
 // print data (index starts at 0)
-_sysput i.0.list_var
+_sysput list_var
+
