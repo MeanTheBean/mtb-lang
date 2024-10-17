@@ -25,7 +25,13 @@ def compCode(code, is_func=False, file_name=None):
         if currentLine[0] != "_" and funcs.runcode == True:
             #print(currentLine)
             if currentLine[0] == "$":
-                funcs.run_func(currentLine[1:].split(" ", 1))
+                if currentLine.split(" ",1)[1][0] == ">":
+                    currentFunc = currentLine.split(" ",2)
+                    # TODO: Wrapper functions
+                    #print("wrapper")
+                    
+                else:
+                    funcs.run_func(currentLine[1:].split(" ", 1))
             else:
                 funcs.var_set(currentLine)
         elif currentLine[0] != "_" and funcs.recordfunc:
