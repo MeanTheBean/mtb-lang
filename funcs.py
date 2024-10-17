@@ -449,4 +449,21 @@ def parse_var(var, convert_to_num=False):
     else:
       var = var_prefix+var
       var = var.replace(".","_")
-      return st.getData(var)
+      varContent = st.getData(var)
+      if varContent[0:3] == "[l]":
+        varContent = convert_to_list(varContent)
+      
+      return varContent
+
+
+def convert_to_list(content):
+  content = content.replace("\n","")
+  content = content[4:].split("|")
+
+  final_string = "[\""
+  
+  for i in content:
+    final_string += i + "\", \""
+
+  final_string = final_string[:-3] + "] "
+  return final_string
