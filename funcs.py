@@ -435,6 +435,13 @@ def parse_var(var, convert_to_num=False):
     else:
       print("ERROR: Invalid comparison operator!")
       quit()
+  elif var[0:6] == "(split":
+    close_mark = var.find(")")
+    split_mark = var[7:close_mark]
+    var_data = parse_var(var[close_mark+1:])
+    var_data = var_data.split(split_mark, 1)
+    var_data = f"[\"{var_data[0]}\", \"{var_data[1]}\"]"
+    return var_data
   elif var == "true\n":
     return 1
   elif var == "false\n":
