@@ -15,3 +15,9 @@ _mklist temp_list
 _appendvar temp_list f.data
 _return temp_list
 _endfunc 1
+
+_mkfunc int var
+splitVar < (split .)f.var
+finalVar < i.0.splitVar
+_return finalVar
+_endfunc 1
