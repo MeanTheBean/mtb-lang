@@ -6,4 +6,5 @@ list_var < $std.list v.hello|im|a|list
 
 // print data (index starts at 0)
 _sysput list_var
+_sysput i.0.list_var
 

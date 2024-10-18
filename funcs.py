@@ -349,10 +349,12 @@ def importlib(name):
 
 def parse_list(listName, indexNum):
   wholeVar = st.getData(listName)
-  if wholeVar[0:3] == "[l]":
-    splitList = wholeVar[3:].split("|")
+  if True: #wholeVar[0:4] == "[l]":
+    split_list = wholeVar[2:]
+    split_list = split_list[:-3]
+    split_list = split_list.split("\", \"")
     try:
-      return splitList[indexNum + 1]
+      return split_list[int(indexNum)] + " "
     except:
       print("ERROR: Index out of range!")
       quit()
