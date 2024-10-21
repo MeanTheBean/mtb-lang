@@ -69,7 +69,7 @@ def sysput(args):
   #print("hi")
   return parse_var(args)
 
-
+# internal function, use std.in
 def sysgrab(args):
   args = args.split(" ", 1)
   args[0] += "\n"
