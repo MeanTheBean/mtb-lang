@@ -1,7 +1,7 @@
 _importlib std
 
 // create the list
-// you can use pipes to seperate items
+// you can use pipes to seperate items (strings only)
 list_var < $std.list v.hello|im|a|list
 
 // print data (index starts at 0)
