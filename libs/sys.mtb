@@ -1,4 +1,4 @@
 _reqver 0.2.1
 
 _mkvar name
-_pyexec globals()["sys_name\n"] = os.name
+_pyvar sys_name os.name
