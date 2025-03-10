@@ -1,11 +1,11 @@
 import os
+import funcs as fn
 
 def newLayer(name):
   try:
     globals()[name] = None
   except:
-    print("ERROR: Invalid variable name!")
-    os._exit(1)
+    fn.call_error("Invalid variable name!")
 
 def setData(name, data):
     globals()[name] = data
@@ -17,9 +17,7 @@ def getData(name, is_func=False, no_error=False):
     return globals()[name]
   except:
     if not is_func:
-      print("ERROR: Variable not found")
-      os._exit(1)
+      fn.call_error("Variable not found")
     else:
-      print("ERROR: Function not found")
-      os._exit(1)
+      fn.call_error("Function not found")
 

@@ -3,6 +3,7 @@ import checks as ch
 import os
 import time
 from pathlib import Path
+import mathfuncs as mf
 #import main
 
 VERSION = "0.2.1"
@@ -54,7 +55,7 @@ def clearcon(e=None):
 
 
 def proghalt(halttime):
-  time.sleep(parse_var(halttime, True))
+  time.sleep(parse_var_old(halttime, True))
 
 
 def make_local_var(name):
@@ -132,6 +133,9 @@ def vardata(data):
 def math_func(input):
   input = input.strip(" ")
   input = input.replace(" ", "")
+
+  data = 0
+  
   if "+" in input:
     input = input.split("+")
     #print(parse_var(input[0]+'\n'.strip("")))
@@ -139,23 +143,22 @@ def math_func(input):
         input[1], True)
   elif "-" in input:
     input = input.split("-")
-    data = parse_var(input[0] + '\n'.strip(""), True) - parse_var(
+    data = parse_var_old(input[0] + '\n'.strip(""), True) - parse_var(
         input[1], True)
   elif "*" in input:
     input = input.split("*")
-    data = parse_var(input[0] + '\n'.strip(""), True) * parse_var(
+    data = parse_var_old(input[0] + '\n'.strip(""), True) * parse_var(
         input[1], True)
   elif "/" in input:
     input = input.split("/")
-    data = parse_var(input[0] + '\n'.strip(""), True) / parse_var(
+    data = parse_var_old(input[0] + '\n'.strip(""), True) / parse_var(
         input[1], True)
   elif "^" in input:
     input = input.split("^")
-    data = parse_var(input[0] + '\n'.strip(""),
+    data = parse_var_old(input[0] + '\n'.strip(""),
                      True)**parse_var(input[1], True)
   else:
-    print("ERROR: Invalid operation!")
-    quit(1)
+    call_error("Invalid operator!")
 
   if int(data) == data:
     data = int(data)
@@ -225,6 +228,10 @@ def endfunc(e=None):
   global runcode
   global currentfunc
 
+  if currentfunc == None:
+    call_error("Cannot end a non-existant function!")
+    return
+  
   tempfunc = {"args": currentfunc["args"], "code": currentfunc["code"]}
 
   st.setData(recordfunc, tempfunc)
@@ -364,6 +371,128 @@ def parse_list(listName, indexNum):
 
 
 def parse_var(var, convert_to_num=False):
+  numbers = ["1","2","3","4","5","6","7","8","9","0","."]
+  ops = ["+", "-", "*", "/", "^", "%"]
+  
+  var = var[:-1]
+  var = var.split(" ")
+
+  for i in var:
+    isNum = True
+    for k in i:
+      if k not in numbers or k == "":
+        isNum = False
+    if isNum:
+      i = float(i)
+  
+  loopString = True
+  while loopString:
+    combineRange = [0,0]
+    foundStart = False
+    foundEnd = False
+    
+    for i,_ in enumerate(var):
+      
+      if var[i][0] == "\"":
+        if foundStart == False:
+          foundStart = True
+          #print(_)
+          combineRange[0] = i
+          var[i] = "[f]"+var[i][1:]
+      if var[i][-1] == "\"" or (var[i] == "\"" and foundStart):
+        combineRange[1] = i+1
+        foundEnd = True
+        #print("end")
+        #if not var[i] == "\"":
+        var[i] = var[i][:-1]
+        break
+        #else:
+        #  var[i] = "\""
+        #  break
+    if foundStart and not foundEnd:
+      loopString = False
+      call_error("String is never terminted!")
+    else:
+      subvar = var[combineRange[0]:combineRange[1]]
+      rangeLen = combineRange[1] - combineRange[0]
+      if rangeLen < 0:
+        call_error("Invalid string!")
+      for k in reversed(range(combineRange[0]+1,combineRange[1])):
+        print(k)
+        print(len(var))
+        var.pop(k)
+      subvar = " ".join(subvar)
+      var[combineRange[0]] = subvar
+      #print(subvar)
+
+    if "\"" not in " ".join(var):
+      loopString = False
+
+  runOps = True
+  while runOps:
+    opIndex = -1
+    for i,v in enumerate(var):
+      
+      if not v[0:3] == "[f]":
+        if v[0] in ops:
+          #print("found op " + v)
+          opIndex = i
+          break
+    if opIndex >= 0:
+      i = opIndex
+      v = var[i]
+      if v[0] in ops:
+        if i == 0:
+          call_error("Cannot use operator before first number!")
+        elif i == len(var)-1:
+          call_error("Cannot use operator after last number!")
+        elif var[i-1].replace("[f]", "")[0] in numbers and var[i+1].replace("[f]", "")[0] in numbers:
+          #print("hello")
+          var[i-1] = var[i-1].replace("[f]", "")
+          var[i+1] = var[i+1].replace("[f]", "")
+          temp = "".join(var[i-1:i+2])
+          
+          temp = float(mf.math_func(temp))
+          
+          if int(temp) == temp:
+            temp = int(temp)
+          var[i] = f"[f]{temp}"
+          #print(var)
+          var.pop(i+1)
+          var.pop(i-1)
+        elif (var[i-1][-1] not in numbers or var[i+1][-1] not in numbers) and v[0] == "+":
+          if "[f]" not in var[i-1] or "[f]" not in var[i+1]:
+            print(var[i-1])
+            if var[i-1][-1] not in numbers and "[f]" not in var[i-1]:
+              print("e")
+              var[i-1] = st.getData(var[i-1]+"\n")
+            if var[i+1][-1] not in numbers:
+              #print(st.getData("hellovar"))
+              var[i+1] = st.getData(var[i+1]+"\n")
+          
+          var[i-1] = var[i-1].replace("[f]", "")
+          var[i+1] = var[i+1].replace("[f]", "")
+          temp = "[f]" + str(var[i-1]) + (var[i+1])
+          var[i] = temp
+          var.pop(i+1)
+          var.pop(i-1)
+        #else:
+          #call_error("Invalid equation!")
+    
+    runOps = False
+    for i in var:
+      if i[0] in ops:
+        runOps =True
+  #print(var)
+
+  for i,_ in enumerate(var):
+    var[i] = var[i].replace("[f]", "")
+  
+  var = " ".join(var)
+  return var+'\n'
+
+
+def parse_var_old(var, convert_to_num=False):
   #print(var)
   #var = var.replace(" ", "")
   
@@ -476,3 +605,9 @@ def convert_to_list(content):
 
   final_string = final_string[:-3] + "] "
   return final_string
+
+
+def call_error(e):
+  currentLine = ch.getLineNum()
+  print(f"ERROR on Line {currentLine}: {e}")
+  os._exit(1)

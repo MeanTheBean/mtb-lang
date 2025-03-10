@@ -1,13 +1,22 @@
 import tokenList
 import funcs
 
+lineNum = {}
 
 def compCode(code, is_func=False, file_name=None):
     global out
     global errors
+    global lineNum
+    
     if not is_func:
         tokenList.setup()
     funcs.set_file_name(file_name)
+
+    if not file_name == None:
+        lineNum[file_name] = 0
+    else:
+        lineNum["main"] = 0
+    
     out = ""
     failed = 0
     errors = False
@@ -15,7 +24,10 @@ def compCode(code, is_func=False, file_name=None):
     fails = 0
     prevLine = ""
     for i in code:
-
+        if not file_name == None:
+            lineNum[file_name] += 1
+        else:
+            lineNum["main"] += 1
         #print("exec")
         token = -1
         currentLine = code[line]
@@ -87,6 +99,10 @@ def compCode(code, is_func=False, file_name=None):
                 break
         line += 1
     funcs.set_file_name(None)
+
+def getLineNum(file="main"):
+    return lineNum[file]
+    
 
 def getErrors():
     #    if errors:

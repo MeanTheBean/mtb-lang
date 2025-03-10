@@ -5,7 +5,7 @@ import os
 import requests
 from pathlib import Path
 
-allowError = True
+allowError = False
 
 parser = argparse.ArgumentParser(description='A program interpreter for mtb-lang')
 parser.add_argument("code_file", help="The file to run")
