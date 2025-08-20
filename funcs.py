@@ -385,7 +385,9 @@ def parse_var(var, convert_to_num=False):
     if isNum:
       i = float(i)
   
-  loopString = True
+  loopString = False
+  if "\"" in " ".join(var):
+    loopString = True
   while loopString:
     combineRange = [0,0]
     foundStart = False
@@ -411,7 +413,7 @@ def parse_var(var, convert_to_num=False):
         #  break
     if foundStart and not foundEnd:
       loopString = False
-      call_error("String is never terminted!")
+      call_error("String is never termintated!")
     else:
       subvar = var[combineRange[0]:combineRange[1]]
       rangeLen = combineRange[1] - combineRange[0]
@@ -432,52 +434,56 @@ def parse_var(var, convert_to_num=False):
   while runOps:
     opIndex = -1
     for i,v in enumerate(var):
-      
-      if not v[0:3] == "[f]":
-        if v[0] in ops:
-          #print("found op " + v)
-          opIndex = i
-          break
+      if len(v) > 0:  
+        if not v[0:3] == "[f]":
+          if v[0] in ops:
+            #print("found op " + v)
+            opIndex = i
+            break
     if opIndex >= 0:
       i = opIndex
       v = var[i]
-      if v[0] in ops:
-        if i == 0:
-          call_error("Cannot use operator before first number!")
-        elif i == len(var)-1:
-          call_error("Cannot use operator after last number!")
-        elif var[i-1].replace("[f]", "")[0] in numbers and var[i+1].replace("[f]", "")[0] in numbers:
-          #print("hello")
-          var[i-1] = var[i-1].replace("[f]", "")
-          var[i+1] = var[i+1].replace("[f]", "")
-          temp = "".join(var[i-1:i+2])
-          
-          temp = float(mf.math_func(temp))
-          
-          if int(temp) == temp:
-            temp = int(temp)
-          var[i] = f"[f]{temp}"
-          #print(var)
-          var.pop(i+1)
-          var.pop(i-1)
-        elif (var[i-1][-1] not in numbers or var[i+1][-1] not in numbers) and v[0] == "+":
-          if "[f]" not in var[i-1] or "[f]" not in var[i+1]:
-            print(var[i-1])
-            if var[i-1][-1] not in numbers and "[f]" not in var[i-1]:
-              print("e")
-              var[i-1] = st.getData(var[i-1]+"\n")
-            if var[i+1][-1] not in numbers:
-              #print(st.getData("hellovar"))
-              var[i+1] = st.getData(var[i+1]+"\n")
-          
-          var[i-1] = var[i-1].replace("[f]", "")
-          var[i+1] = var[i+1].replace("[f]", "")
-          temp = "[f]" + str(var[i-1]) + (var[i+1])
-          var[i] = temp
-          var.pop(i+1)
-          var.pop(i-1)
-        #else:
-          #call_error("Invalid equation!")
+      if len(v) > 0:
+        print(len(v))
+        if v[0] in ops:
+          print(var[i+1].replace("[f]", ""))
+          print(var)
+          if i == 0:
+            call_error("Cannot use operator before first number!")
+          elif i == len(var)-1:
+            call_error("Cannot use operator after last number!")
+          elif var[i-1].replace("[f]", "")[0] in numbers and var[i+1].replace("[f]", "")[0] in numbers:
+            #print("hello")
+            var[i-1] = var[i-1].replace("[f]", "")
+            var[i+1] = var[i+1].replace("[f]", "")
+            temp = "".join(var[i-1:i+2])
+            
+            temp = float(mf.math_func(temp))
+            
+            if int(temp) == temp:
+              temp = int(temp)
+            var[i] = f"[f]{temp}"
+            #print(var)
+            var.pop(i+1)
+            var.pop(i-1)
+          elif (var[i-1][-1] not in numbers or var[i+1][-1] not in numbers) and v[0] == "+":
+            if "[f]" not in var[i-1] or "[f]" not in var[i+1]:
+              print(var[i-1])
+              if var[i-1][-1] not in numbers and "[f]" not in var[i-1]:
+                print("e")
+                var[i-1] = st.getData(var[i-1]+"\n")
+              if var[i+1][-1] not in numbers:
+                #print(st.getData("hellovar"))
+                var[i+1] = st.getData(var[i+1]+"\n")
+            
+            var[i-1] = var[i-1].replace("[f]", "")
+            var[i+1] = var[i+1].replace("[f]", "")
+            temp = "[f]" + str(var[i-1]) + (var[i+1])
+            var[i] = temp
+            var.pop(i+1)
+            var.pop(i-1)
+          #else:
+            #call_error("Invalid equation!")
     
     runOps = False
     for i in var:
