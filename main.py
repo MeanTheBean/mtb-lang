@@ -2,7 +2,6 @@ import argparse
 import checks
 import funcs
 import os
-import requests
 from pathlib import Path
 
 allowError = False
