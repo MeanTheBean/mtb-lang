@@ -481,6 +481,8 @@ def parse_var(var, convert_to_num=False):
   var = " ".join(var)
   return var+'\n'
 
+def parse_simple(var):
+  return st.getData(var)
 
 def parse_var_old(var, convert_to_num=False):
   #print(var)
