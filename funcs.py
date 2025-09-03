@@ -7,6 +7,7 @@ import mathfuncs as mf
 #import main
 
 VERSION = "0.2.1"
+DEBUGMODE = True
 
 #print(st.getData("os.name"))
 pyvar_list = {
@@ -18,7 +19,10 @@ if os.name == "nt":
   lib_path = "%localappdata%/.mtb/libs/"
 elif os.name == "posix":
   home = str(Path.home())
-  lib_path = home+"/.mtb/libs/"
+  if DEBUGMODE:
+    lib_path = "./libs/"
+  else:
+    lib_path = home+"/.mtb/libs/"
 
 def CodeSetup():
   global runcode
