@@ -75,13 +75,8 @@ def sysput(args):
   return parse_var(args)
 
 # internal function, use std.in
-def sysgrab(args):
-  args = args.split(" ", 1)
-  args[0] += "\n"
-  #print(args)
-
-  st.setData(args[0], input(parse_var(args[1])) + "\n")
-  #print(st.getData(args[0]))
+def sysgrab(var):
+  st.setData(var, input())
 
 def var_set(statement):
   global returnVar
