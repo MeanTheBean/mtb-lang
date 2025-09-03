@@ -402,13 +402,11 @@ def parse_var(var, convert_to_num=False):
       if var[i][0] == "\"":
         if foundStart == False:
           foundStart = True
-          #print(_)
           combineRange[0] = i
           var[i] = "[f]"+var[i][1:]
       if var[i][-1] == "\"" or (var[i] == "\"" and foundStart):
         combineRange[1] = i+1
         foundEnd = True
-        #print("end")
         #if not var[i] == "\"":
         var[i] = var[i][:-1]
         break
@@ -424,12 +422,9 @@ def parse_var(var, convert_to_num=False):
       if rangeLen < 0:
         call_error("Invalid string!")
       for k in reversed(range(combineRange[0]+1,combineRange[1])):
-        print(k)
-        print(len(var))
         var.pop(k)
       subvar = " ".join(subvar)
       var[combineRange[0]] = subvar
-      #print(subvar)
 
     if "\"" not in " ".join(var):
       loopString = False
@@ -441,23 +436,18 @@ def parse_var(var, convert_to_num=False):
       if len(v) > 0:  
         if not v[0:3] == "[f]":
           if v[0] in ops:
-            #print("found op " + v)
             opIndex = i
             break
     if opIndex >= 0:
       i = opIndex
       v = var[i]
       if len(v) > 0:
-        print(len(v))
         if v[0] in ops:
-          print(var[i+1].replace("[f]", ""))
-          print(var)
           if i == 0:
             call_error("Cannot use operator before first number!")
           elif i == len(var)-1:
             call_error("Cannot use operator after last number!")
           elif var[i-1].replace("[f]", "")[0] in numbers and var[i+1].replace("[f]", "")[0] in numbers:
-            #print("hello")
             var[i-1] = var[i-1].replace("[f]", "")
             var[i+1] = var[i+1].replace("[f]", "")
             temp = "".join(var[i-1:i+2])
@@ -467,17 +457,13 @@ def parse_var(var, convert_to_num=False):
             if int(temp) == temp:
               temp = int(temp)
             var[i] = f"[f]{temp}"
-            #print(var)
             var.pop(i+1)
             var.pop(i-1)
           elif (var[i-1][-1] not in numbers or var[i+1][-1] not in numbers) and v[0] == "+":
             if "[f]" not in var[i-1] or "[f]" not in var[i+1]:
-              print(var[i-1])
               if var[i-1][-1] not in numbers and "[f]" not in var[i-1]:
-                print("e")
                 var[i-1] = st.getData(var[i-1]+"\n")
               if var[i+1][-1] not in numbers:
-                #print(st.getData("hellovar"))
                 var[i+1] = st.getData(var[i+1]+"\n")
             
             var[i-1] = var[i-1].replace("[f]", "")
@@ -493,7 +479,6 @@ def parse_var(var, convert_to_num=False):
     for i in var:
       if i[0] in ops:
         runOps =True
-  #print(var)
 
   for i,_ in enumerate(var):
     var[i] = var[i].replace("[f]", "")
