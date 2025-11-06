@@ -7,3 +7,4 @@ pyproject.toml
 .upm
 importedfile.mtb
 generated-icon.png
+cpp/*.h
