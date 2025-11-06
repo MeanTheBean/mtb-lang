@@ -33,7 +33,7 @@ try:
   funcs.get_dir(str(file_dir))
 except:
   if args.code_file == "version":
-    print(f"mtb-lang version {funcs.VERSION}; created by Mean The Bean 2024")
+    print(f"mtb-lang version {funcs.VERSION}; created by Mean The Bean 2025")
     os._exit(0)
   elif args.code_file == "update":
     #TODO: Update Packages
