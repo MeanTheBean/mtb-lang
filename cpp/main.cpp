@@ -23,7 +23,7 @@ int main(int argc, char** argv)
 		std::cout << "ERROR: No input file specified\n\trun \"mtb --help\" for more info\n";
 	else
 	{
-		system("mkdir -pv /tmp/mtb");
+		system("mkdir -p /tmp/mtb");
 
 		write_file("/tmp/mtb/main.py", main_py, main_py_len);
 		write_file("/tmp/mtb/checks.py", checks_py, checks_py_len);
