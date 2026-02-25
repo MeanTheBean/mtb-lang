@@ -391,6 +391,8 @@ def parse_var(var, convert_to_num=False):
     combineRange = [0,0]
     foundStart = False
     foundEnd = False
+
+    print("loop")
     
     for i,_ in enumerate(var):
       
@@ -424,10 +426,15 @@ def parse_var(var, convert_to_num=False):
     if "\"" not in " ".join(var):
       loopString = False
 
+  print(var)
   runOps = True
   while runOps:
     opIndex = -1
     for i,v in enumerate(var):
+      if (i == 0 and v == "num1"):
+          print("e")
+          os._exit(0)
+      #print(f"iv {i} {v}")
       if len(v) > 0:  
         if not v[0:3] == "[f]":
           if v[0] in ops:
