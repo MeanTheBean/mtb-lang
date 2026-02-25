@@ -32,15 +32,7 @@ try:
   file_dir = Path(args.code_file).parent.absolute()
   funcs.get_dir(str(file_dir))
 except:
-  if args.code_file == "version":
-    print(f"mtb-lang version {funcs.VERSION}; created by Mean The Bean 2025")
-    os._exit(0)
-  elif args.code_file == "update":
-    #TODO: Update Packages
-    print("ERROR: Packages not yet implemented!")
-    os._exit(0)
-  else:  
-    print(f"ERROR: No such file: {args.code_file}")
+  print(f"ERROR: No such file: {args.code_file}")
   quit()
 prog_text = f.readlines()
 f.close()
