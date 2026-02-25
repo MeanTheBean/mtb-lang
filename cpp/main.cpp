@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "main.h"
 #include "checks.h"
@@ -19,12 +20,29 @@ void write_file(const char* path, unsigned char* data, unsigned int len)
     out.write((char*)data, len);
 }
 
+void install_package(char** packages, int pcount)
+{
+	std::vector<std::string> pkgs(pcount-2);
+	for (int i = 2; i < pcount; i++)
+		pkgs[i-2] = packages[i];
+	
+	std::cout << "Installing packages: ";
+
+	for (int i = 0; i < pkgs.size(); i++)
+	{
+		std::cout << pkgs[i] << ", ";
+	}
+	std::cout << '\n';
+}
+
 int main(int argc, char** argv)
 {
 	if (argc < 2)
 		std::cout << "ERROR: No input file specified\n\trun \"mtb --help\" for more info\n";
 	else if (std::string(argv[1]) == "--help")
 		std::cout << helptext << '\n';
+	else if (std::string(argv[1]) == "install")
+		install_package(argv, argc);
 	else
 	{
 		system("mkdir -p /tmp/mtb");
