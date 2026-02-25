@@ -10,6 +10,8 @@
 #include "stack.h"
 #include "tokenList.h"
 
+#include "paramstrings.h"
+
 
 void write_file(const char* path, unsigned char* data, unsigned int len) 
 {
@@ -21,6 +23,8 @@ int main(int argc, char** argv)
 {
 	if (argc < 2)
 		std::cout << "ERROR: No input file specified\n\trun \"mtb --help\" for more info\n";
+	else if (std::string(argv[1]) == "--help")
+		std::cout << helptext << '\n';
 	else
 	{
 		system("mkdir -p /tmp/mtb");
