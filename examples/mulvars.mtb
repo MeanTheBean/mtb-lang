@@ -1,7 +1,6 @@
 // give the variables values
-num1 < v.1
-num2 < v.4
+num1 < 1
+num2 < 4
 
-// "m." starts a math formula
-output < m.num2 * num1
+output < num2 * num1
 _sysput output
