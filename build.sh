@@ -1,4 +1,4 @@
 #!/bin/bash
 
 ./cpp/convert.sh
-g++ -o mtb ./cpp/main.cpp
+g++ -lcurl -o mtb ./cpp/main.cpp
