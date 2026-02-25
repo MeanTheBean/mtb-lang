@@ -8,4 +8,5 @@ pyproject.toml
 importedfile.mtb
 generated-icon.png
 cpp/*.h
+!cpp/paramstrings.h
 mtb
