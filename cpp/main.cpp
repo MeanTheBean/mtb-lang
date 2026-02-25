@@ -94,6 +94,8 @@ int main(int argc, char** argv)
 		std::cout << "ERROR: No input file specified\n\trun \"mtb --help\" for more info\n";
 	else if (std::string(argv[1]) == "--help")
 		std::cout << helptext << '\n';
+	else if (std::string(argv[1]) == "--version" || std::string(argv[1]) == "-v")
+		std::cout << versiontext << '\n';
 	else if (std::string(argv[1]) == "install")
 		install_package(argv, argc);
 	else
